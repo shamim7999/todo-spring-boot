@@ -1,0 +1,28 @@
+body {
+    background: #eae8e5;
+}
+
+/* CSS for box-shadow hover effect */
+.card {
+    transition: box-shadow 0.3s; /* Add transition for smooth effect */
+    margin-top: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box-shadow effect on hover */
+}
+
+.card h5 {
+    background: green;
+    padding: 10px;
+    color: white;
+}
+
+.my-icons {
+    font-size: 24px;
+}
+
+.my-icons i {
+    margin-right: 5px;
+}
+

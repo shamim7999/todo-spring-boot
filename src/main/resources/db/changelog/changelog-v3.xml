@@ -5,7 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <include file="db/changelog/changelog-v1.xml"/>
-    <include file="db/changelog/changelog-v2.xml"/>
-    <include file="db/changelog/changelog-v3.xml"/>
+    <!-- New change set for renaming the table -->
+    <changeSet id="4" author="shamim">
+        <renameTable oldTableName="todos" newTableName="todo" />
+    </changeSet>
+
 </databaseChangeLog>

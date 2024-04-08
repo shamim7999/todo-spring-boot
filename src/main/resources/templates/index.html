@@ -10,9 +10,9 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav th:fragment="my-nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Todo App</a>
+        <a class="navbar-brand active" th:href="@{/}">Todo App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,6 +21,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Add Todo</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/show-todos}">Show Todos</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -28,34 +31,27 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div th:fragment="my-modal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Todo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/todos/add-todo}" method="post">
+                <form th:action="@{/add-todo}" method="post">
                     <div class="form-group mb-3">
                         <input type="text" class="form-control" name="title" placeholder="Enter title.." required>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" name="description" placeholder="Enter Description.." maxlength="1000" required></textarea>
+                        <textarea class="form-control" name="description" placeholder="Enter Description.." maxlength="1000" required rows="15"></textarea>
                     </div>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                    <div class="form-group mb-3">
+                        <input th:hidden="hidden" type="text" class="form-control" name="ratings" placeholder="Enter title..">
                     </div>
-                    <div class="container text-center">
+                    <div class="container text-center my-5">
                         <button type="submit" class="btn btn-outline-success">Add</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
                     </div>
                 </form>
 
@@ -63,7 +59,26 @@
         </div>
     </div>
 </div>
-    <section th:replace="/base::jsFragment"></section>
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+    <!-- Iterate over todos and print each one -->
+    <div class="col" th:each="todo : ${todos}">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${todo.title}">Card title</h5>
+                <p class="card-text" th:text="${todo.description}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <div class="my-icons">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <i class="fa-solid fa-trash"></i>
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section th:replace="/base::jsFragment"></section>
 
 </body>
 </html>

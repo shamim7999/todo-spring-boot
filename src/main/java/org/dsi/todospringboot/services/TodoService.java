@@ -4,6 +4,8 @@ import org.dsi.todospringboot.models.Todo;
 import org.dsi.todospringboot.repositories.TodoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TodoService {
     private final TodoRepository todoRepository;
@@ -12,7 +14,12 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
-    public Todo save(Todo todo) {
-        return todoRepository.save(todo);
+    public void save(Todo todo) {
+        todo.setRatings("6");
+        todoRepository.save(todo);
+    }
+
+    public List <Todo> findAll() {
+        return todoRepository.findAll();
     }
 }
