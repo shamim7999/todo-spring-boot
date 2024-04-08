@@ -13,19 +13,28 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "todos")
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+
+    @Column
     private String title;
 
-    @Column(length = 1000)
+
+    @Column
     private String description;
 
-    private int priority;
+    @Column
+    private String ratings;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
+//    private int priority;
+//
+//
+//    private LocalDateTime createdAt;
+//
+//
+//    private LocalDateTime updatedAt;
 }

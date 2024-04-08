@@ -1,8 +1,8 @@
 package org.dsi.todospringboot.controllers;
 
+import org.dsi.todospringboot.models.Todo;
 import org.dsi.todospringboot.services.TodoService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,8 +14,10 @@ public class HomeController {
         this.todoService = todoService;
     }
 
-    @PostMapping("/add-todo")
+    @RequestMapping("/add-todo")
     public String processAddTodo() {
-        return null;
+        Todo todo = todoService.save(new Todo(0, "kjsa", "jslkdjalasafas", "4"));
+        System.out.println("TODO: "+todo);
+        return "index";
     }
 }
