@@ -38,17 +38,43 @@ form {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box-shadow effect on hover */
 }
 
+h6 {
+    color: blue;
+    font-size: 20px;
+}
+
+.updated-time {
+    color: #888B95;
+    font-weight: bold;
+}
+
 .card h5 {
     background: green;
-    padding: 10px;
+    padding: 15px;
     color: white;
 }
 
 .my-icons {
     font-size: 24px;
+    cursor: pointer;
+}
+
+.my-icons a {
+    text-decoration: none;
 }
 
 .my-icons i {
     margin-right: 5px;
 }
 
+.my-icons .fa-pen-to-square {
+    color: blue;
+}
+
+.my-icons .fa-trash {
+    color: red;
+}
+
+.my-icons .fa-circle-check {
+    color: green;
+}

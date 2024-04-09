@@ -23,10 +23,20 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title" th:text="${todo.title}">Card title</h5>
-                <p class="card-text" th:text="${todo.description}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <h4 class="card-text" th:text="${todo.description}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
+                <h6 class="card-text" th:text="${todo.status}">This is Status</h6>
+                <p class="updated-time">Last Updated: 25m ago..</p>
+                <div class="stars">
+                    <!-- Convert todo.priority to int and loop to display stars -->
+                    <span th:each="starNumber : ${#numbers.sequence(1, todo.priority)}">
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+                </div>
                 <div class="my-icons">
                     <i class="fa-solid fa-pen-to-square"></i>
-                    <i class="fa-solid fa-trash"></i>
+                    <a th:href="@{ '/soft-delete-todo?id='+ ${todo.id} }">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
                     <i class="fa-solid fa-circle-check"></i>
                 </div>
             </div>

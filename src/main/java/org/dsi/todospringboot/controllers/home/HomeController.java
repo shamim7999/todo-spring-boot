@@ -1,13 +1,10 @@
-package org.dsi.todospringboot.controllers;
+package org.dsi.todospringboot.controllers.home;
 
 import org.dsi.todospringboot.models.Todo;
 import org.dsi.todospringboot.services.TodoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,12 @@ public class HomeController {
         List<Todo> todos = todoService.findAll();
         model.addAttribute("todos", todos);
         return "show-todos";
+    }
+
+    @GetMapping("/soft-delete-todo")
+    public String softDeleteTodoById(@RequestParam int id) {
+        todoService.softDeleteTodo(id);
+        return "redirect:/show-todos";
     }
 
     @PostMapping("/add-todo")

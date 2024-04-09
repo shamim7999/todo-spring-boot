@@ -15,10 +15,14 @@ public class TodoService {
     }
 
     public void save(Todo todo) {
+        todo.setEnabled(true);
         todoRepository.save(todo);
     }
 
+    public void softDeleteTodo(int id) {
+        todoRepository.softDeleteTodoById(id);
+    }
     public List <Todo> findAll() {
-        return todoRepository.findAll();
+        return todoRepository.findAllByIsEnabledTrue();
     }
 }
