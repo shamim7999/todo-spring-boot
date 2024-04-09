@@ -27,7 +27,10 @@ public class Todo {
     private String description;
 
     @Column
-    private String ratings;
+    private String priority;
+
+    @Column
+    private String status;
 
 //    private int priority;
 //

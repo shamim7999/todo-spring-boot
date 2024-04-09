@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Modify existing columns to set nullable to false -->
+    <changeSet id="7" author="shamim7999">
+        <modifyDataType tableName="todo"
+                        nullable="false"
+                        columnName="title"
+                        newDataType="varchar(50) not null"
+        />
+
+        <modifyDataType tableName="todo"
+                        nullable="false"
+                        columnName="priority"
+                        newDataType="varchar(20) not null"
+        />
+    </changeSet>
+
+
+</databaseChangeLog>

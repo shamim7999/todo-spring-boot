@@ -15,7 +15,6 @@ public class TodoService {
     }
 
     public void save(Todo todo) {
-        todo.setRatings("6");
         todoRepository.save(todo);
     }
 

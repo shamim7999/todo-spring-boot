@@ -2,6 +2,32 @@ body {
     background: #eae8e5;
 }
 
+.form-group {
+    margin-bottom: 5px;
+}
+
+label {
+    font-weight: bold;
+}
+
+textarea {
+    resize: vertical;
+}
+
+form {
+    background: #F9F9F9;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+
 /* CSS for box-shadow hover effect */
 .card {
     transition: box-shadow 0.3s; /* Add transition for smooth effect */

@@ -28,7 +28,7 @@ public class HomeController {
     }
 
     @PostMapping("/add-todo")
-    public String processAddTodo(@ModelAttribute Todo todo, Model model) {
+    public String processAddTodo(@ModelAttribute Todo todo) {
         todoService.save(todo);
         return "index";
     }

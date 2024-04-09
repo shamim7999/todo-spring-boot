@@ -8,6 +8,7 @@ public class TodoSpringBootApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TodoSpringBootApplication.class, args);
+        System.out.println("Now!!");
     }
 
 }

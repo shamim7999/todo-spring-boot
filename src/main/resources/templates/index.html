@@ -39,21 +39,40 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/add-todo}" method="post">
-                    <div class="form-group mb-3">
-                        <input type="text" class="form-control" name="title" placeholder="Enter title.." required>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" name="description" placeholder="Enter Description.." maxlength="1000" required rows="15"></textarea>
-                    </div>
-                    <div class="form-group mb-3">
-                        <input th:hidden="hidden" type="text" class="form-control" name="ratings" placeholder="Enter title..">
-                    </div>
-                    <div class="container text-center my-5">
-                        <button type="submit" class="btn btn-outline-success">Add</button>
-                        <button type="reset" class="btn btn-secondary">Reset</button>
-                    </div>
-                </form>
+                <div class="container">
+                    <form th:action="@{/add-todo}" method="post">
+                        <div class="form-group mb-3">
+                            <label for="title">Title</label>
+                            <input id="title" type="text" class="form-control" name="title" placeholder="Enter title.." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" class="form-control" name="description" placeholder="Enter Description.." maxlength="1000" required rows="9"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select class="form-control" name="status" id="status" required>
+                                <option value="Pending">Pending</option>
+                                <option value="Completed">Completed</option>
+                                <option value="In Progress">In Progress</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="priority">Priority</label>
+                            <select class="form-control" name="priority" id="priority" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="container text-center my-5">
+                            <button type="submit" class="btn btn-success">Add</button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                    </form>
+                </div>
 
             </div>
         </div>
