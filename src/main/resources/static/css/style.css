@@ -55,8 +55,9 @@ h6 {
 }
 
 .my-icons {
-    font-size: 24px;
+    font-size: 25px;
     cursor: pointer;
+    margin-top: 6px;
 }
 
 .my-icons a {
@@ -77,4 +78,8 @@ h6 {
 
 .my-icons .fa-circle-check {
     color: green;
+}
+
+.stars .fa-star {
+    color: darkgoldenrod;
 }
