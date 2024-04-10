@@ -9,12 +9,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
 public class HomeController {
     private final TodoService todoService;
 
     public HomeController(TodoService todoService) {
         this.todoService = todoService;
+    }
+
+    @ModelAttribute
+    public Todo sendDummyTodo() {
+        return new Todo();
+    }
+
+    @GetMapping({"/", "/index"})
+    public String sendIndex() {
+        return "index";
     }
 
     @GetMapping("/show-todos")

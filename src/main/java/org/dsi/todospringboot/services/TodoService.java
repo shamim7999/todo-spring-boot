@@ -1,10 +1,12 @@
 package org.dsi.todospringboot.services;
 
+import org.dsi.todospringboot.helper.Shorter;
 import org.dsi.todospringboot.models.Todo;
 import org.dsi.todospringboot.repositories.TodoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TodoService {
@@ -23,6 +25,15 @@ public class TodoService {
         todoRepository.softDeleteTodoById(id);
     }
     public List <Todo> findAll() {
-        return todoRepository.findAllByIsEnabledTrue();
+
+        return todoRepository
+                .findAllByIsEnabledTrue()
+                .stream()
+                .map((todo) -> {
+                    todo.setTitle(Shorter.makeShortTheSentence(todo.getTitle(), 10));
+                    todo.setDescription(Shorter.makeShortTheSentence(todo.getDescription(), 30));
+                    return todo;
+                })
+                .collect(Collectors.toList());
     }
 }

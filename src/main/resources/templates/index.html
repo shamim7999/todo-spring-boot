@@ -40,14 +40,31 @@
             </div>
             <div class="modal-body">
                 <div class="container">
-                    <form th:action="@{/add-todo}" method="post">
+                    <form novalidate="novalidate" th:object="${todo}" th:action="@{/add-todo}" method="post">
                         <div class="form-group mb-3">
                             <label for="title">Title</label>
-                            <input id="title" type="text" class="form-control" name="title" placeholder="Enter title.." required>
+                            <input id="title"
+                                   type="text"
+                                   th:value="${todo.title}"
+                                   class="form-control"
+                                   name="title"
+                                   placeholder="Enter title.."
+                                   required
+
+                            />
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea id="description" class="form-control" name="description" placeholder="Enter Description.." maxlength="1000" required rows="9"></textarea>
+                            <textarea
+                                    id="description"
+                                    class="form-control"
+                                    name="description"
+                                    th:text="${todo.description}"
+                                    placeholder="Enter description..."
+                                    maxlength="1000"
+                                    required
+                                    rows="9"
+                            ></textarea>
                         </div>
                         <div class="form-group">
                             <label for="status">Status</label>

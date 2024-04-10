@@ -19,22 +19,22 @@
 
 <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
     <!-- Iterate over todos and print each one -->
-    <div class="col" th:each="todo : ${todos}">
+    <div class="col" th:each="myTodo : ${todos}">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title" th:text="${todo.title}">Card title</h5>
-                <h4 class="card-text" th:text="${todo.description}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-                <h6 class="card-text" th:text="${todo.status}">This is Status</h6>
+                <h5 class="card-title" th:text="${myTodo.title}">Card title</h5>
+                <h4 class="card-text" th:text="${myTodo.description}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
+                <h6 class="card-text" th:text="${myTodo.status}">This is Status</h6>
                 <p class="updated-time">Last Updated: 25m ago..</p>
                 <div class="stars">
                     <!-- Convert todo.priority to int and loop to display stars -->
-                    <span th:each="starNumber : ${#numbers.sequence(1, todo.priority)}">
+                    <span th:each="starNumber : ${#numbers.sequence(1, myTodo.priority)}">
                         <i class="fa-solid fa-star"></i>
                     </span>
                 </div>
                 <div class="my-icons">
                     <i class="fa-solid fa-pen-to-square"></i>
-                    <a th:href="@{ '/soft-delete-todo?id='+ ${todo.id} }">
+                    <a th:href="@{ '/soft-delete-todo?id='+ ${myTodo.id} }">
                         <i class="fa-solid fa-trash"></i>
                     </a>
                     <i class="fa-solid fa-circle-check"></i>
