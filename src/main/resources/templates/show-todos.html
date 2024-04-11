@@ -6,13 +6,10 @@
     <link th:replace="/base::bootstrapCssFragment">
     <link th:replace="/base::cssFragment">
     <link th:replace="/base::fontAwesomeFragment">
-
-
 </head>
 <body>
 
 <section th:replace="/index::my-nav"></section>
-
 
 <!-- Modal -->
 <section th:replace="/index::my-modal"></section>
@@ -33,7 +30,12 @@
                     </span>
                 </div>
                 <div class="my-icons">
-                    <i class="fa-solid fa-pen-to-square"></i>
+
+                    <a href="#" th:attr="onclick='fillModalFields(\'' + ${myTodo.id} + '\',\'' + ${myTodo.title} + '\',\'' + ${myTodo.description} + '\',\'' + ${myTodo.status} + '\',\'' + ${myTodo.priority} + '\')'">
+                        <i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#exampleUpdateModal"></i>
+                    </a>
+
+
                     <a th:href="@{ '/soft-delete-todo?id='+ ${myTodo.id} }">
                         <i class="fa-solid fa-trash"></i>
                     </a>
@@ -43,6 +45,69 @@
         </div>
     </div>
 </div>
+
+<div th:fragment="my-update-modal" class="modal fade" id="exampleUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Todo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form novalidate="novalidate" th:action="@{/update-todo}" method="post">
+                        <input type="hidden" id="todoId" name="id" />
+                        <div class="form-group mb-3">
+                            <label for="title2">Title</label>
+                            <input id="title2" type="text" class="form-control" name="title" placeholder="Enter title.." required />
+                        </div>
+                        <div class="form-group">
+                            <label for="description2">Description</label>
+                            <textarea id="description2" class="form-control" name="description" placeholder="Enter description..." maxlength="1000" required rows="9"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="status2">Status</label>
+                            <select class="form-control" name="status" id="status2" required>
+                                <option value="Pending">Pending</option>
+                                <option value="Completed">Completed</option>
+                                <option value="In Progress">In Progress</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="priority2">Priority</label>
+                            <select class="form-control" name="priority" id="priority2" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="container text-center my-5">
+                            <button type="submit" class="btn btn-success">Update</button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function fillModalFields(id, title, description, status, priority) {
+        document.getElementById('todoId').value = id;
+        document.getElementById('title2').value = title;
+        document.getElementById('description2').textContent = description;
+        document.getElementById('status2').value = status;
+        document.getElementById('priority2').value = priority;
+
+        //const formAction = "/update-todo?id=" + id;
+        //document.querySelector('form').setAttribute('th:action', formAction);
+
+        console.log(`${id}, ${title}, ${description}, ${status}, ${priority}`);
+    }
+</script>
 
 <section th:replace="/base::jsFragment"></section>
 

@@ -39,6 +39,11 @@ public class HomeController {
         return "redirect:/show-todos";
     }
 
+    @PostMapping("/update-todo")
+    public String processUpdateTodo(@ModelAttribute Todo todo) {
+        todoService.save(todo);
+        return "redirect:/show-todos";
+    }
     @PostMapping("/add-todo")
     public String processAddTodo(@ModelAttribute Todo todo) {
         todoService.save(todo);
