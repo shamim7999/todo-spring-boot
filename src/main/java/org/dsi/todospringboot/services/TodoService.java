@@ -5,6 +5,7 @@ import org.dsi.todospringboot.models.Todo;
 import org.dsi.todospringboot.repositories.TodoRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,7 @@ public class TodoService {
 
     public void save(Todo todo) {
         todo.setEnabled(true);
+        todo.setUpdatedTime(LocalDateTime.now());
         todoRepository.save(todo);
     }
 

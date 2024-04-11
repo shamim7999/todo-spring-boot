@@ -38,5 +38,5 @@ public class Todo {
     private boolean isEnabled;
 
     @Column
-    private LocalDateTime updatedAt;
+    private LocalDateTime updatedTime;
 }

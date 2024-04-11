@@ -25,7 +25,7 @@
                 <h5 class="card-title" th:text="${myTodo.title}">Card title</h5>
                 <h4 class="card-text" th:text="${myTodo.description}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
                 <h6 class="card-text" th:text="${myTodo.status}">This is Status</h6>
-                <p class="updated-time">Last Updated: 25m ago..</p>
+                <p class="updated-time">Last Updated: 25m ago...</p>
                 <div class="stars">
                     <!-- Convert todo.priority to int and loop to display stars -->
                     <span th:each="starNumber : ${#numbers.sequence(1, myTodo.priority)}">
