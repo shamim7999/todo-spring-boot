@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 
 @Entity
 @Setter
@@ -34,11 +36,7 @@ public class Todo {
 
     @Column
     private boolean isEnabled;
-//    private int priority;
-//
-//
-//    private LocalDateTime createdAt;
-//
-//
-//    private LocalDateTime updatedAt;
+
+    @Column
+    private LocalDateTime updatedAt;
 }
