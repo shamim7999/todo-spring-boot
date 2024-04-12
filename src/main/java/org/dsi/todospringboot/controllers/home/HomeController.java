@@ -49,4 +49,12 @@ public class HomeController {
         todoService.save(todo);
         return "index";
     }
+
+    @GetMapping("/mark-as-completed")
+    public String markAsCompleted(@RequestParam int id) {
+        Todo todo = todoService.findTodoById(id);
+        todo.setStatus("Completed");
+        todoService.save(todo);
+        return "redirect:/show-todos";
+    }
 }
