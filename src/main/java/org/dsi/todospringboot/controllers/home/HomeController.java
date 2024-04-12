@@ -2,6 +2,7 @@ package org.dsi.todospringboot.controllers.home;
 
 import org.dsi.todospringboot.models.Todo;
 import org.dsi.todospringboot.services.TodoService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,10 +30,21 @@ public class HomeController {
     }
 
     @GetMapping("/show-todos")
-    public String showTodos(@RequestParam(required = false) String status, Model model) {
-        Map<String, List<?> > result = todoService.findAll(status);
-        model.addAttribute("todos", result.get("todos"));
-        model.addAttribute("formattedDate", result.get("formattedDate"));
+    public String showTodos(@RequestParam(required = false) Optional<String> status,
+                            @RequestParam("page") Optional<Integer> todoPage,
+                            Model model) {
+
+        int currentTodoPage = todoPage.orElse(1);
+        String myStatus = status.orElse(null);
+
+        Map<String, Page<?>> pageResult = todoService.findAll(myStatus, currentTodoPage, 3);
+
+        model.addAttribute("todos", pageResult.get("todos"));
+        model.addAttribute("formattedDate", pageResult.get("formattedDate"));
+        model.addAttribute("currentTodoPage", currentTodoPage);
+        model.addAttribute("totalTodoPages", pageResult.get("todos").getTotalPages());
+        model.addAttribute("status", myStatus);
+
         return "show-todos";
     }
 

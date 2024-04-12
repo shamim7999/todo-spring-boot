@@ -32,7 +32,6 @@
 </div>
 
 <div class="row row-cols-1 row-cols-md-3 g-4 text-center mx-2 py-4">
-
     <!-- Iterate over todos and print each one -->
     <div th:each="myTodo, iterStat : ${todos}">
         <div class="card">
@@ -40,18 +39,16 @@
                 <div class="card-body">
                     <h5 class="card-title" th:text="${myTodo.title}"
                         th:style="${myTodo.status eq 'Completed'} ? 'background-color: #BC3F3B;'
-                 : (${myTodo.status eq 'In Progress'} ? 'background-color: green;'
-                 : (${myTodo.status eq 'Pending'} ? 'background-color: #0B5ED7;' : ''))">
+                        : (${myTodo.status eq 'In Progress'} ? 'background-color: green;'
+                        : (${myTodo.status eq 'Pending'} ? 'background-color: #0B5ED7;' : ''))">
                         Card title
                     </h5>
                 </div>
-
-
                 <h4 class="card-text" th:text="${myTodo.description}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
                 <h6 class="card-text" th:text="${myTodo.status}">This is Status</h6>
                 <p class="updated-time">
                     Last Updated:
-                    <span th:text="${formattedDate[iterStat.index]}"></span>
+                    <span th:text="${formattedDate.getContent()[__${iterStat.index}__]}"></span>
                 </p>
                 <div class="stars">
                     <!-- Convert todo.priority to int and loop to display stars -->
@@ -60,12 +57,9 @@
                     </span>
                 </div>
                 <div class="my-icons">
-
                     <a href="#" th:attr="onclick='fillModalFields(\'' + ${myTodo.id} + '\',\'' + ${myTodo.title} + '\',\'' + ${myTodo.description} + '\',\'' + ${myTodo.status} + '\',\'' + ${myTodo.priority} + '\')'">
                         <i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#exampleUpdateModal"></i>
                     </a>
-
-
                     <a th:href="@{ '/soft-delete-todo?id='+ ${myTodo.id} }">
                         <i class="fa-solid fa-trash"></i>
                     </a>
@@ -76,12 +70,31 @@
             </div>
         </div>
     </div>
-
     <div class="add-card" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <i class="fa-solid fa-plus"></i>
     </div>
+</div>
 
 
+<div class="myPage">
+    <nav aria-label="Page Navigation Example" th:fragment="my_product_page">
+        <ul class="pagination">
+            <li th:classappend="${currentTodoPage == 1} ? 'disabled' : ''" class="page-item">
+                <a class="page-link" th:if="${status != null}" th:href="@{'/show-todos?status=' + ${status} + '&page=' + ${currentTodoPage - 1}}">Prev</a>
+                <a class="page-link" th:if="${status == null}" th:href="@{'/show-todos?page=' + ${currentTodoPage - 1}}">Prev</a>
+            </li>
+
+            <li th:each="i : ${#numbers.sequence(1, totalTodoPages)}" th:classappend="${currentTodoPage == i} ? 'active' : ''" class="page-item">
+                <a class="page-link" th:if="${status != null}" th:href="@{'/show-todos?status=' + ${status} + '&page=' + ${i}}"><span th:text="${i}"></span></a>
+                <a class="page-link" th:if="${status == null}" th:href="@{'/show-todos?page=' + ${i}}"><span th:text="${i}"></span></a>
+            </li>
+
+            <li th:classappend="${currentTodoPage == totalTodoPages} ? 'disabled' : ''" class="page-item">
+                <a class="page-link" th:if="${status != null}" th:href="@{'/show-todos?status=' + ${status} + '&page=' + ${currentTodoPage + 1}}">Next</a>
+                <a class="page-link" th:if="${status == null}" th:href="@{'/show-todos?page=' + ${currentTodoPage + 1}}">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 <div th:fragment="my-update-modal" class="modal fade" id="exampleUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -4,6 +4,9 @@ import org.dsi.todospringboot.helper.Shorter;
 import org.dsi.todospringboot.helper.TimestampConverter;
 import org.dsi.todospringboot.models.Todo;
 import org.dsi.todospringboot.repositories.TodoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -58,6 +61,26 @@ public class TodoService {
         Map<String, List<?>> result = new HashMap<>();
         result.put("todos", todos);
         result.put("formattedDate", formattedDate);
+
+        return result;
+    }
+
+    public Map<String, Page<?>> findAll(String status, int currentPage, int size) {
+        Pageable pageable = PageRequest.of(currentPage-1, size);
+
+        Page<Todo> todoPage = todoRepository.findAllByIsEnabledTrue(status, pageable);
+        todoPage = todoPage.map(todo -> {
+            todo.setTitle(Shorter.makeShortTheSentence(todo.getTitle(), 10));
+            todo.setDescription(Shorter.makeShortTheSentence(todo.getDescription(), 30));
+            return todo;
+        });
+
+        Page<String> formattedDatePage = todoPage
+                .map(todo -> TimestampConverter.convertTimestampToString(todo.getUpdatedTime()));
+
+        Map<String, Page<?>> result = new HashMap<>();
+        result.put("todos", todoPage);
+        result.put("formattedDate", formattedDatePage);
 
         return result;
     }

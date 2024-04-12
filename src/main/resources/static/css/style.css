@@ -110,3 +110,8 @@ h6 {
     color: #eae8e5;
     border: 2px solid red;
 }
+
+.myPage {
+    width: 10%;
+    margin: 0 auto;
+}
