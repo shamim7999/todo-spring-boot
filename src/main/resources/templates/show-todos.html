@@ -6,6 +6,7 @@
     <link th:replace="/base::bootstrapCssFragment">
     <link th:replace="/base::cssFragment">
     <link th:replace="/base::fontAwesomeFragment">
+    <link rel="stylesheet" href="../static/css/add-card.css">
 </head>
 <body>
 
@@ -13,17 +14,34 @@
 
 <!-- Modal -->
 <section th:replace="/index::my-modal"></section>
+<div class="container">
+    <div class="filters text-center">
+        <a th:href="@{'/show-todos'}">
+            <button type="button" class="btn btn-secondary">All Todos</button>
+        </a>
+        <a th:href="@{'/show-todos?status=Pending'}">
+            <button type="button" class="btn btn-primary">Pending</button>
+        </a>
+        <a th:href="@{'/show-todos?status=In Progress'}">
+            <button type="button" class="btn btn-success">In Progress</button>
+        </a>
+        <a th:href="@{'/show-todos?status=Completed'}">
+            <button type="button" class="btn btn-danger">Completed</button>
+        </a>
+    </div>
+</div>
 
 <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+
     <!-- Iterate over todos and print each one -->
-    <div class="col" th:each="myTodo : ${todos}">
+    <div th:each="myTodo, iterStat : ${todos}">
         <div class="card">
             <div class="card-body">
                 <div class="card-body">
                     <h5 class="card-title" th:text="${myTodo.title}"
-                        th:style="${myTodo.status eq 'Completed'} ? 'background-color: gold;'
+                        th:style="${myTodo.status eq 'Completed'} ? 'background-color: #BC3F3B;'
                  : (${myTodo.status eq 'In Progress'} ? 'background-color: green;'
-                 : (${myTodo.status eq 'Pending'} ? 'background-color: indigo;' : ''))">
+                 : (${myTodo.status eq 'Pending'} ? 'background-color: #0B5ED7;' : ''))">
                         Card title
                     </h5>
                 </div>
@@ -31,7 +49,10 @@
 
                 <h4 class="card-text" th:text="${myTodo.description}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
                 <h6 class="card-text" th:text="${myTodo.status}">This is Status</h6>
-                <p class="updated-time">Last Updated: 25m ago...</p>
+                <p class="updated-time">
+                    Last Updated:
+                    <span th:text="${formattedDate[iterStat.index]}"></span>
+                </p>
                 <div class="stars">
                     <!-- Convert todo.priority to int and loop to display stars -->
                     <span th:each="starNumber : ${#numbers.sequence(1, myTodo.priority)}">
@@ -55,6 +76,12 @@
             </div>
         </div>
     </div>
+
+    <div class="add-card" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="fa-solid fa-plus"></i>
+    </div>
+
+
 </div>
 
 <div th:fragment="my-update-modal" class="modal fade" id="exampleUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -94,7 +121,7 @@
                                 <option value="5">5</option>
                             </select>
                         </div>
-                        <div class="container text-center my-5">
+                        <div class="container text-center my-5 adder">
                             <button type="submit" class="btn btn-success">Update</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
                         </div>

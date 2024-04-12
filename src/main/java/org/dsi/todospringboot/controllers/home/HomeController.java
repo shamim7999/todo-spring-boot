@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class HomeController {
@@ -27,9 +29,10 @@ public class HomeController {
     }
 
     @GetMapping("/show-todos")
-    public String showTodos(Model model) {
-        List<Todo> todos = todoService.findAll();
-        model.addAttribute("todos", todos);
+    public String showTodos(@RequestParam(required = false) String status, Model model) {
+        Map<String, List<?> > result = todoService.findAll(status);
+        model.addAttribute("todos", result.get("todos"));
+        model.addAttribute("formattedDate", result.get("formattedDate"));
         return "show-todos";
     }
 

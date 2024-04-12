@@ -22,7 +22,7 @@ form {
     margin-top: 20px;
 }
 
-.btn {
+.adder .btn {
     width: 100%;
     margin-top: 10px;
 }
@@ -60,7 +60,7 @@ h6 {
     margin-top: 6px;
 }
 
-.my-icons a {
+.add-card a, .my-icons a {
     text-decoration: none;
 }
 
@@ -84,14 +84,29 @@ h6 {
     color: darkgoldenrod;
 }
 
-.Pending {
-
+.filters a {
+    text-decoration: none;
 }
 
-.In-Progress {
-
+.add-card {
+    border: 2px solid black;
+    /* Additional styling if needed */
+    padding: 100px 10%;
+    margin-top: 40px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 17%;
+    transition: all 0.3s ease;
 }
 
-.Completed {
-    background: darkgoldenrod;
+.add-card i{
+
+    font-size: 100px; /* Set the font size of the icon */
+    /* Additional styling if needed */
+}
+
+.add-card:hover {
+    background: #888B95;
+    color: #eae8e5;
+    border: 2px solid red;
 }
