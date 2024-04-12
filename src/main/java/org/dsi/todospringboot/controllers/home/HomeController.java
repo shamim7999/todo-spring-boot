@@ -50,7 +50,7 @@ public class HomeController {
     @PostMapping("/add-todo")
     public String processAddTodo(@ModelAttribute Todo todo) {
         todoService.save(todo);
-        return "index";
+        return "redirect:/show-todos";
     }
 
     @GetMapping("/mark-as-completed")
