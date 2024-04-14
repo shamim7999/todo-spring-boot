@@ -11,6 +11,11 @@
 <body>
 
 <section th:replace="/index::my-nav"></section>
+<div class="text-center">
+    <div th:if="${msg}" th:classappend="${msg.type}" class="alert" role="alert">
+        <p th:text="${msg.content}"></p>
+    </div>
+</div>
 
 <!-- Modal -->
 <section th:replace="/index::my-modal"></section>
@@ -37,14 +42,16 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${myTodo.title}"
+                    <h5 class="card-title"
+                        th:text="${#strings.substring(myTodo.title, 0, T(java.lang.Math).min(#strings.length(myTodo.title), 10))} + '...'"
                         th:style="${myTodo.status eq 'Completed'} ? 'background-color: #BC3F3B;'
                         : (${myTodo.status eq 'In Progress'} ? 'background-color: green;'
                         : (${myTodo.status eq 'Pending'} ? 'background-color: #0B5ED7;' : ''))">
                         Card title
                     </h5>
                 </div>
-                <h4 class="card-text" th:text="${myTodo.description}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
+                <h4 class="card-text" th:text="${#strings.substring(myTodo.description, 0, T(java.lang.Math).min(#strings.length(myTodo.description), 30))} + '...'">Description</h4>
+
                 <h6 class="card-text" th:text="${myTodo.status}">This is Status</h6>
                 <p class="updated-time">
                     Last Updated:

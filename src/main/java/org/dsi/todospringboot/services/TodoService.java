@@ -69,12 +69,6 @@ public class TodoService {
         Pageable pageable = PageRequest.of(currentPage-1, size);
 
         Page<Todo> todoPage = todoRepository.findAllByIsEnabledTrue(status, pageable);
-        todoPage = todoPage.map(todo -> {
-            todo.setTitle(Shorter.makeShortTheSentence(todo.getTitle(), 10));
-            todo.setDescription(Shorter.makeShortTheSentence(todo.getDescription(), 30));
-            return todo;
-        });
-
         Page<String> formattedDatePage = todoPage
                 .map(todo -> TimestampConverter.convertTimestampToString(todo.getUpdatedTime()));
 

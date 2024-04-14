@@ -21,11 +21,11 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Size(min = 7, max = 30)
+    @Size(min = 7, max = 30, message = "Title should have 7 to 30 characters.")
     @Column
     private String title;
 
-    @Size(min = 20, max = 1000)
+    @Size(min = 20, max = 1000,  message = "Description should have 20 to 1000 characters.")
     @Column
     private String description;
 

@@ -1,11 +1,15 @@
 package org.dsi.todospringboot.controllers.home;
 
+import jakarta.validation.Valid;
+import org.dsi.todospringboot.helper.Message;
 import org.dsi.todospringboot.models.Todo;
 import org.dsi.todospringboot.services.TodoService;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
@@ -55,21 +59,43 @@ public class HomeController {
     }
 
     @PostMapping("/update-todo")
-    public String processUpdateTodo(@ModelAttribute Todo todo) {
+    public String processUpdateTodo(@Valid @ModelAttribute Todo todo,
+                                    BindingResult result,
+                                    RedirectAttributes redirectAttributes) {
+        if(result.hasErrors()) {
+            System.out.println(result);
+            redirectAttributes.addFlashAttribute("msg",
+                    new Message("Todo could not updated", "alert-danger"));
+            return "redirect:/show-todos";
+        }
         todoService.save(todo);
+        redirectAttributes.addFlashAttribute("msg",
+                new Message("Todo updated successfully", "alert-success"));
         return "redirect:/show-todos";
     }
     @PostMapping("/add-todo")
-    public String processAddTodo(@ModelAttribute Todo todo) {
+    public String processAddTodo(@Valid @ModelAttribute Todo todo,
+                                 BindingResult result,
+                                 RedirectAttributes redirectAttributes) {
+        if(result.hasErrors()) {
+            System.out.println(result);
+            redirectAttributes.addFlashAttribute("msg",
+                    new Message("Todo could not added", "alert-danger"));
+            return "redirect:/show-todos";
+        }
         todoService.save(todo);
+        redirectAttributes.addFlashAttribute("msg",
+                new Message("Todo Added successfully", "alert-success"));
         return "redirect:/show-todos";
     }
 
     @GetMapping("/mark-as-completed")
-    public String markAsCompleted(@RequestParam int id) {
+    public String markAsCompleted(@RequestParam int id, RedirectAttributes redirectAttributes) {
         Todo todo = todoService.findTodoById(id);
         todo.setStatus("Completed");
         todoService.save(todo);
+        redirectAttributes.addFlashAttribute("msg",
+                new Message("Todo Marked as Completed", "alert-success"));
         return "redirect:/show-todos";
     }
 }
