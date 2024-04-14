@@ -28,14 +28,6 @@ public class TodoService {
     public void save(Todo todo) {
         todo.setEnabled(true);
         todo.setUpdatedTime(Timestamp.valueOf(LocalDateTime.now()));
-        System.out.println(
-                todo.getId() + " " +
-                        todo.getDescription() + " " +
-                        todo.getTitle() + " " +
-                        todo.getStatus() + " " +
-                        todo.getPriority() + " " +
-                        todo.getUpdatedTime()
-        );
         todoRepository.save(todo);
     }
 

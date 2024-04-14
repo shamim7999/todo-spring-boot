@@ -2,6 +2,16 @@ body {
     background: #eae8e5;
 }
 
+.my-background {
+    height: 4628px;
+    background-image: url("../images/nature.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.9;
+}
+
 .form-group {
     margin-bottom: 5px;
 }
@@ -91,12 +101,12 @@ h6 {
 .add-card {
     border: 2px solid black;
     /* Additional styling if needed */
-    padding: 100px 10%;
+    padding: 90px 10%;
     margin-top: 40px;
     box-sizing: border-box;
     cursor: pointer;
     border-radius: 17%;
-    transition: all 0.3s ease;
+    transition: all 0.7s ease;
 }
 
 .add-card i{
@@ -112,6 +122,5 @@ h6 {
 }
 
 .myPage {
-    width: 10%;
-    margin: 0 auto;
+    align-content: center;
 }

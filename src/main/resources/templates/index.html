@@ -6,11 +6,9 @@
     <link th:replace="/base::bootstrapCssFragment">
     <link th:replace="/base::cssFragment">
     <link th:replace="/base::fontAwesomeFragment">
-
-
 </head>
 <body>
-<nav th:fragment="my-nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav th:fragment="my-nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand active" th:href="@{/}">Todo App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,6 +27,7 @@
     </div>
 </nav>
 
+<section class="my-background"></section>
 
 <!-- Modal -->
 <div th:fragment="my-modal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -96,18 +95,19 @@
     </div>
 </div>
 
-
-<div class="row row-cols-1 row-cols-md-3 g-4 text-center">
-    <!-- Iterate over todos and print each one -->
-    <div class="col" th:each="todo : ${todos}">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${todo.title}">Card title</h5>
-                <p class="card-text" th:text="${todo.description}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="my-icons">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    <i class="fa-solid fa-trash"></i>
-                    <i class="fa-solid fa-circle-check"></i>
+<div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+        <!-- Iterate over todos and print each one -->
+        <div class="col mb-4" th:each="todo : ${todos}">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${todo.title}">Card title</h5>
+                    <p class="card-text" th:text="${todo.description}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <div class="my-icons">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i class="fa-solid fa-trash"></i>
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
                 </div>
             </div>
         </div>
