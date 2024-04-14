@@ -53,8 +53,11 @@ public class HomeController {
     }
 
     @GetMapping("/soft-delete-todo")
-    public String softDeleteTodoById(@RequestParam int id) {
+    public String softDeleteTodoById(@RequestParam int id,
+                                     RedirectAttributes redirectAttributes) {
         todoService.softDeleteTodo(id);
+        redirectAttributes.addFlashAttribute("msg",
+                new Message("Todo deleted successfully", "alert-success"));
         return "redirect:/show-todos";
     }
 

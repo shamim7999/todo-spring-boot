@@ -25,7 +25,7 @@ public interface TodoRepository extends JpaRepository<Todo, Integer> {
     Page<Todo> findAllByIsEnabledTrue(Pageable pageable);
 
     @Modifying
-    @Transactional(readOnly = true)
+    @Transactional
     @Query("UPDATE Todo t SET t.isEnabled = false WHERE t.id = :id")
     void softDeleteTodoById(int id);
 }
