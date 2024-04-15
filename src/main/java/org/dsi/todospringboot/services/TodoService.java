@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -25,15 +26,18 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
+    @Transactional
     public void save(Todo todo) {
         todo.setEnabled(true);
         todo.setUpdatedTime(Timestamp.valueOf(LocalDateTime.now()));
         todoRepository.save(todo);
     }
 
+    @Transactional
     public void softDeleteTodo(int id) {
         todoRepository.softDeleteTodoById(id);
     }
+
     public Map<String, List<?>> findAll(String status) {
         List<Todo> todos = todoRepository
                 .findAllByIsEnabledTrue(status)
@@ -53,6 +57,29 @@ public class TodoService {
         Map<String, List<?>> result = new HashMap<>();
         result.put("todos", todos);
         result.put("formattedDate", formattedDate);
+
+        return result;
+    }
+
+    public Map<String, Integer> findAllkindsOfTodos() {
+        List<Todo> todos = todoRepository.findAllByIsEnabledTrue();
+        Map<String, Integer> result = new HashMap<>();
+
+        int pendingCount = (int) todos.stream()
+                .filter(todo -> "Pending".equals(todo.getStatus()))
+                .count();
+
+        int completedCount = (int) todos.stream()
+                .filter(todo -> "Completed".equals(todo.getStatus()))
+                .count();
+
+        int inProgressCount = (int) todos.stream()
+                .filter(todo -> "In Progress".equals(todo.getStatus()))
+                .count();
+
+        result.put("pending", pendingCount);
+        result.put("completed", completedCount);
+        result.put("inProgress", inProgressCount);
 
         return result;
     }

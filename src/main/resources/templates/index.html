@@ -27,7 +27,7 @@
     </div>
 </nav>
 
-<section class="my-background"></section>
+
 
 <!-- Modal -->
 <div th:fragment="my-modal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -69,8 +69,8 @@
                             <label for="status">Status</label>
                             <select class="form-control" name="status" id="status" required>
                                 <option value="Pending">Pending</option>
-                                <option value="Completed">Completed</option>
                                 <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -95,24 +95,60 @@
     </div>
 </div>
 
-<div class="container mt-5">
-    <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
-        <!-- Iterate over todos and print each one -->
-        <div class="col mb-4" th:each="todo : ${todos}">
+<div class="container" style="margin-top: 150px;">
+    <div class="row row-cols-1 row-cols-md-4 g-4 text-center">
+        <div class="col">
             <div class="card h-100">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${todo.title}">Card title</h5>
-                    <p class="card-text" th:text="${todo.description}">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="my-icons">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        <i class="fa-solid fa-trash"></i>
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
+                    <h2 class="card-title" style="background-color: #6B747D;">
+                        All Todos
+                    </h2>
+                    <h4 th:text="${pending + inProgress + completed}">
+                        100 All Todos
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title" style="background-color: #3A33FF;">
+                        Pending
+                    </h2>
+                    <h4 th:text="${pending}">
+                        100 Pending
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title" style="background-color: #009257;">
+                        In Progress
+                    </h2>
+                    <h4 th:text="${inProgress}">
+                        100 In Progress
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title" style="background-color: #F10034;">
+                        Completed
+                    </h2>
+                    <h4 th:text="${completed}">
+                        100 Completed
+                    </h4>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 
 <section th:replace="/base::jsFragment"></section>
 
