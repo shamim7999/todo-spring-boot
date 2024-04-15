@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:replace="/base::bootstrapCssFragment">
     <link th:replace="/base::cssFragment">
     <link th:replace="/base::fontAwesomeFragment">
 </head>
+
 <body>
 <nav th:fragment="my-nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
@@ -17,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a  data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link active" aria-current="page" href="#">Add Todo</a>
+                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link active" aria-current="page" href="#">Add Todo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/show-todos}">Show Todos</a>
@@ -26,8 +29,6 @@
         </div>
     </div>
 </nav>
-
-
 
 <!-- Modal -->
 <div th:fragment="my-modal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -42,28 +43,11 @@
                     <form novalidate="novalidate" th:object="${todo}" th:action="@{/add-todo}" method="post">
                         <div class="form-group mb-3">
                             <label for="title">Title</label>
-                            <input id="title"
-                                   type="text"
-                                   th:value="${todo.title}"
-                                   class="form-control"
-                                   name="title"
-                                   placeholder="Enter title.."
-                                   required
-
-                            />
+                            <input id="title" type="text" th:value="${todo.title}" class="form-control" name="title" placeholder="Enter title.." required />
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea
-                                    id="description"
-                                    class="form-control"
-                                    name="description"
-                                    th:text="${todo.description}"
-                                    placeholder="Enter description..."
-                                    maxlength="1000"
-                                    required
-                                    rows="9"
-                            ></textarea>
+                            <textarea id="description" class="form-control" name="description" th:text="${todo.description}" placeholder="Enter description..." maxlength="1000" required rows="9"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="status">Status</label>
@@ -89,13 +73,12 @@
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 
-<div class="container" style="margin-top: 150px;">
+<div class="container mt-5">
     <div class="row row-cols-1 row-cols-md-4 g-4 text-center">
         <div class="col">
             <div class="card h-100">
@@ -148,9 +131,8 @@
     </div>
 </div>
 
-
-
 <section th:replace="/base::jsFragment"></section>
 
 </body>
+
 </html>
