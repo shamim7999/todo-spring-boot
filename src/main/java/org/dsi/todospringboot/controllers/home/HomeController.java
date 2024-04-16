@@ -46,7 +46,7 @@ public class HomeController {
                                     @RequestParam(value = "query", required = false) Optional<String> query,
                                     Model model) {
         int currentTodoPage = todoPage.orElse(1);
-        String myQuery = query.orElse(null);
+        String myQuery = query.orElse("").trim();
 
         System.out.println("I am in query: "+query);
 
