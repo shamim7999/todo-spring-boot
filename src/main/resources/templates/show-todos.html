@@ -101,18 +101,33 @@
                 <nav aria-label="Page Navigation Example" th:fragment="my_product_page">
                     <ul class="pagination">
                         <li th:classappend="${currentTodoPage == 1} ? 'disabled' : ''" class="page-item">
-                            <a class="page-link" th:if="${status != null}" th:href="@{'/show-todos?status=' + ${status} + '&page=' + ${currentTodoPage - 1}}">Prev</a>
-                            <a class="page-link" th:if="${status == null}" th:href="@{'/show-todos?page=' + ${currentTodoPage - 1}}">Prev</a>
+                            <span th:if="${showQuery == false}">
+                                <a class="page-link" th:if="${status != null}" th:href="@{'/show-todos?status=' + ${status} + '&page=' + ${currentTodoPage - 1}}">Prev</a>
+                                <a class="page-link" th:if="${status == null}" th:href="@{'/show-todos?page=' + ${currentTodoPage - 1}}">Prev</a>
+                            </span>
+                            <span th:if="${showQuery == true}">
+                                <a class="page-link" th:href="@{'/show-todos/queries?query=' + ${myQuery} + '&page=' + ${currentTodoPage - 1}}">Prev</a>
+                            </span>
                         </li>
 
                         <li th:each="i : ${#numbers.sequence(1, totalTodoPages)}" th:classappend="${currentTodoPage == i} ? 'active' : ''" class="page-item">
-                            <a class="page-link" th:if="${status != null}" th:href="@{'/show-todos?status=' + ${status} + '&page=' + ${i}}"><span th:text="${i}"></span></a>
-                            <a class="page-link" th:if="${status == null}" th:href="@{'/show-todos?page=' + ${i}}"><span th:text="${i}"></span></a>
+                            <span th:if="${showQuery == false}">
+                                <a class="page-link" th:if="${status != null}" th:href="@{'/show-todos?status=' + ${status} + '&page=' + ${i}}"><span th:text="${i}"></span></a>
+                                <a class="page-link" th:if="${status == null}" th:href="@{'/show-todos?page=' + ${i}}"><span th:text="${i}"></span></a>
+                            </span>
+                            <span th:if="${showQuery == true}">
+                                <a class="page-link" th:href="@{'/show-todos/queries?query=' + ${myQuery} + '&page=' + ${i}}"><span th:text="${i}"></span></a>
+                            </span>
                         </li>
 
                         <li th:classappend="${currentTodoPage == totalTodoPages} ? 'disabled' : ''" class="page-item">
-                            <a class="page-link" th:if="${status != null}" th:href="@{'/show-todos?status=' + ${status} + '&page=' + ${currentTodoPage + 1}}">Next</a>
-                            <a class="page-link" th:if="${status == null}" th:href="@{'/show-todos?page=' + ${currentTodoPage + 1}}">Next</a>
+                            <span th:if="${showQuery == false}">
+                                <a class="page-link" th:if="${status != null}" th:href="@{'/show-todos?status=' + ${status} + '&page=' + ${currentTodoPage + 1}}">Next</a>
+                                <a class="page-link" th:if="${status == null}" th:href="@{'/show-todos?page=' + ${currentTodoPage + 1}}">Next</a>
+                            </span>
+                            <span th:if="${showQuery == true}">
+                                <a class="page-link" th:href="@{'/show-todos/queries?query=' + ${myQuery} + '&page=' + ${currentTodoPage + 1}}">Next</a>
+                            </span>
                         </li>
                     </ul>
                 </nav>

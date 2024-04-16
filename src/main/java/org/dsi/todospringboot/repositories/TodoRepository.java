@@ -25,6 +25,8 @@ public interface TodoRepository extends JpaRepository<Todo, Integer> {
             "AND (:status IS NULL OR :status = '' OR t.status = :status)")
     Page<Todo> findAllByIsEnabledTrue(@Param("status") String status, Pageable pageable);
 
+    Page<Todo> findByTitleContainingOrDescriptionContainingAndIsEnabledIsTrue(String title, String description, Pageable pageable);
+
     @Query("SELECT t FROM Todo t WHERE t.isEnabled = true")
     Page<Todo> findAllByIsEnabledTrue(Pageable pageable);
 

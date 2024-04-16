@@ -18,7 +18,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link active" aria-current="page" href="#">Add Todo</a>
                 </li>
@@ -26,9 +26,16 @@
                     <a class="nav-link active" aria-current="page" th:href="@{/show-todos}">Show Todos</a>
                 </li>
             </ul>
+
+            <!-- Search bar and button -->
+            <form class="d-flex" th:action="@{'/show-todos/queries'}" method="get">
+                <input class="form-control me-0" style="outline: none;" name="query" type="search" placeholder="Search Title or Description ... " aria-label="Search">
+                <button class="btn btn-warning" type="submit">Search</button>
+            </form>
         </div>
     </div>
 </nav>
+
 
 <!-- Modal -->
 <div th:fragment="my-modal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

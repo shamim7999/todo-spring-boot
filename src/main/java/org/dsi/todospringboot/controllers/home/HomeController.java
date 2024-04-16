@@ -40,6 +40,28 @@ public class HomeController {
         return "index";
     }
 
+    //@ResponseBody
+    @GetMapping("/show-todos/queries")
+    public String showTodosBySearch(@RequestParam("page") Optional<Integer> todoPage,
+                                    @RequestParam(value = "query", required = false) Optional<String> query,
+                                    Model model) {
+        int currentTodoPage = todoPage.orElse(1);
+        String myQuery = query.orElse(null);
+
+        System.out.println("I am in query: "+query);
+
+        Map<String, Page<?>> pageResult = todoService.findAllBySearch(myQuery, currentTodoPage, 3);
+
+        model.addAttribute("todos", pageResult.get("todos"));
+        model.addAttribute("formattedDate", pageResult.get("formattedDate"));
+        model.addAttribute("currentTodoPage", currentTodoPage);
+        model.addAttribute("totalTodoPages", pageResult.get("todos").getTotalPages());
+        model.addAttribute("myQuery", myQuery);
+        model.addAttribute("showQuery", true);
+
+        return "show-todos";
+    }
+
     @GetMapping("/show-todos")
     public String showTodos(@RequestParam(required = false) Optional<String> status,
                             @RequestParam("page") Optional<Integer> todoPage,
@@ -55,6 +77,7 @@ public class HomeController {
         model.addAttribute("currentTodoPage", currentTodoPage);
         model.addAttribute("totalTodoPages", pageResult.get("todos").getTotalPages());
         model.addAttribute("status", myStatus);
+        model.addAttribute("showQuery", false);
 
         return "show-todos";
     }

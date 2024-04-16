@@ -98,6 +98,21 @@ public class TodoService {
         return result;
     }
 
+
+    public Map<String, Page<?>> findAllBySearch(String query, int currentPage, int size) {
+        Pageable pageable = PageRequest.of(currentPage-1, size);
+
+        Page<Todo> todoPage = todoRepository.findByTitleContainingOrDescriptionContainingAndIsEnabledIsTrue(query,query, pageable);
+        Page<String> formattedDatePage = todoPage
+                .map(todo -> TimestampConverter.convertTimestampToString(todo.getUpdatedTime()));
+
+        Map<String, Page<?>> result = new HashMap<>();
+        result.put("todos", todoPage);
+        result.put("formattedDate", formattedDatePage);
+
+        return result;
+    }
+
     public Todo findTodoById(int id) {
         return todoRepository.findById(id)
                 .orElseThrow(
