@@ -64,7 +64,7 @@ public class HomeController {
                                      RedirectAttributes redirectAttributes) {
         todoService.softDeleteTodo(id);
         redirectAttributes.addFlashAttribute("msg",
-                new Message("Todo deleted successfully", "alert-success"));
+                new Message("Todo deleted successfully", "alert-success", null));
         return "redirect:/show-todos";
     }
 
@@ -75,12 +75,12 @@ public class HomeController {
         if(result.hasErrors()) {
             System.out.println(result);
             redirectAttributes.addFlashAttribute("msg",
-                    new Message("Todo could not updated", "alert-danger"));
+                    new Message("Todo could not updated", "alert-danger", Message.errorMessage(result)));
             return "redirect:/show-todos";
         }
         todoService.save(todo);
         redirectAttributes.addFlashAttribute("msg",
-                new Message("Todo updated successfully", "alert-success"));
+                new Message("Todo updated successfully", "alert-success", null));
         return "redirect:/show-todos";
     }
     @PostMapping("/add-todo")
@@ -90,12 +90,12 @@ public class HomeController {
         if(result.hasErrors()) {
             System.out.println(result);
             redirectAttributes.addFlashAttribute("msg",
-                    new Message("Todo could not added", "alert-danger"));
+                    new Message("Todo could not added", "alert-danger", Message.errorMessage(result)));
             return "redirect:/show-todos";
         }
         todoService.save(todo);
         redirectAttributes.addFlashAttribute("msg",
-                new Message("Todo Added successfully", "alert-success"));
+                new Message("Todo Added successfully", "alert-success", null));
         return "redirect:/show-todos";
     }
 
@@ -105,7 +105,7 @@ public class HomeController {
         todo.setStatus("Completed");
         todoService.save(todo);
         redirectAttributes.addFlashAttribute("msg",
-                new Message("Todo Marked as Completed", "alert-success"));
+                new Message("Todo Marked as Completed", "alert-success", null));
         return "redirect:/show-todos";
     }
 }
