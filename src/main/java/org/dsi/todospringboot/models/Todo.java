@@ -19,7 +19,7 @@ import java.sql.Timestamp;
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Size(min = 7, max = 30, message = "Title should have 7 to 30 characters.")
     @Column
@@ -36,7 +36,7 @@ public class Todo {
     private String status;
 
     @Column
-    private boolean isEnabled;
+    private Boolean isEnabled;
 
     @Column
     private Timestamp updatedTime;

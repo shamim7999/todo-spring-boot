@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="63284595-4e50-4c32-969c-bb6a77b2a695">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="title" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="priority" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="isEnabled" class="java.lang.Boolean"/>
+	<field name="updatedTime" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="89" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="70" forecolor="#030303" backcolor="rgba(10, 10, 9, 0.72156864)" uuid="a84c23cd-c79c-4eb3-94fb-ec84390e157a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="200" y="10" width="220" height="50" forecolor="#F7EEED" backcolor="#FFFFFF" uuid="0dfd8fe6-e1b4-4a3d-94c9-0b01db582c4d"/>
+				<textElement textAlignment="Center">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Todo Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="53">
+			<rectangle>
+				<reportElement x="10" y="0" width="65" height="53" uuid="3f549ca8-35fe-4076-8621-b995a258e8d7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="25" y="7" width="30" height="20" uuid="4b680e5c-19fc-431d-ba60-cb353a018f04"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="75" y="0" width="70" height="53" uuid="9883953a-6c98-40d2-a9ae-726b8006f0ef"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="95" y="7" width="30" height="20" uuid="24ad1423-39c7-4c5d-a924-438415078100"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Title]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="145" y="0" width="90" height="53" uuid="02dedcd8-1697-4a76-bce0-e52a765e63d7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="145" y="7" width="80" height="20" uuid="44be4560-5026-4c3b-bbbb-37d3223c01bc"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<!-- Adjusted positions and sizes of rectangles and text elements -->
+			<rectangle>
+				<reportElement x="235" y="0" width="88" height="53" uuid="91790c86-393b-48ac-b7a4-8d712f81fddb"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="323" y="0" width="70" height="53" uuid="2bd70cf4-c7a6-4d37-b3a2-0123987f5310"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="393" y="0" width="70" height="53" uuid="fdc466ce-9fec-4fee-a114-03d8526ccf91"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="463" y="0" width="87" height="53" uuid="fcc1c7bf-b01a-4b6b-bd2c-993c25e7c643"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="240" y="7" width="68" height="20" uuid="c6fbcda0-15bb-48a4-8e01-27882b4a1bf9"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Priority]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="7" width="70" height="20" uuid="f87b0d11-bae9-4792-80a6-ec0562ecd0b6"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="7" width="70" height="20" uuid="5414cb5e-6e0e-4f7a-baca-cd33b9a1b224"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Enabled]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="7" width="86" height="20" uuid="2c6a9bed-128c-47c8-8e2e-3155a5a1caf2"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Updated Time]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="57" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="5" width="70" height="40" uuid="8c13503e-22ec-4b04-83e3-d355c90c145d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="5" width="70" height="50" uuid="ebe137fa-0c70-40f1-946a-b943a112dbd2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="145" y="5" width="90" height="50" uuid="69b4d91b-f7f5-4ce2-a88b-6a0a0b027432"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="238" y="5" width="88" height="45" uuid="65b33ad4-924f-46fb-9c19-18383b916ff6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{priority}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="5" width="69" height="45" uuid="d72fdea4-761b-45e2-81dd-c03247e5b6ab"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="5" width="70" height="50" uuid="fd184fc8-9a0a-46b7-9ff9-cc31d8391d99"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{isEnabled}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="5" width="79" height="50" uuid="84fccb7b-5be5-47d0-8b84-0b51c0767200"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{updatedTime}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

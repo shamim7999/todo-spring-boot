@@ -1,6 +1,7 @@
 package org.dsi.todospringboot.controllers.home;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.dsi.todospringboot.helper.Message;
 import org.dsi.todospringboot.models.Todo;
 import org.dsi.todospringboot.services.TodoService;
@@ -17,13 +18,9 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
+@AllArgsConstructor
 public class HomeController {
     private final TodoService todoService;
-
-    public HomeController(TodoService todoService) {
-        this.todoService = todoService;
-    }
-
     @ModelAttribute
     public Todo sendDummyTodo() {
         return new Todo();

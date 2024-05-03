@@ -28,7 +28,7 @@ public class TodoService {
 
     @Transactional
     public void save(Todo todo) {
-        todo.setEnabled(true);
+        todo.setIsEnabled(true);
         todo.setUpdatedTime(Timestamp.valueOf(LocalDateTime.now()));
         todoRepository.save(todo);
     }
@@ -36,6 +36,10 @@ public class TodoService {
     @Transactional
     public void softDeleteTodo(int id) {
         todoRepository.softDeleteTodoById(id);
+    }
+
+    public List<Todo> findAllTodos() {
+        return todoRepository.findAllByIsEnabledTrue();
     }
 
     public Map<String, List<?>> findAll(String status) {
