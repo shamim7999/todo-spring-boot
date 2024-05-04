@@ -26,7 +26,7 @@ public class ExcelToDatabaseHelper {
 
     public static List<Todo> excelSheetToListOfTodos(InputStream inputStream) throws Exception {
         Workbook workbook = new XSSFWorkbook(inputStream);
-        Sheet sheet = workbook.getSheet("Sheet1");
+        Sheet sheet = workbook.getSheet(workbook.getSheetName(0));
         Iterator<Row> rows = sheet.iterator();
         List<Todo> todos = new ArrayList<>();
 
