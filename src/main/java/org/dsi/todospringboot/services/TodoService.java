@@ -1,5 +1,6 @@
 package org.dsi.todospringboot.services;
 
+import org.dsi.todospringboot.helper.ExcelHelper;
 import org.dsi.todospringboot.helper.Shorter;
 import org.dsi.todospringboot.helper.TimestampConverter;
 import org.dsi.todospringboot.models.Todo;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -31,6 +33,18 @@ public class TodoService {
         todo.setIsEnabled(true);
         todo.setUpdatedTime(Timestamp.valueOf(LocalDateTime.now()));
         todoRepository.save(todo);
+    }
+
+    @Transactional
+    public void save(MultipartFile file) throws Exception {
+        List<Todo> todos = ExcelHelper.excelSheetToListOfTodos(file.getInputStream()).stream()
+                .peek(todo -> {
+                    todo.setIsEnabled(true);
+                    todo.setUpdatedTime(Timestamp.valueOf(LocalDateTime.now()));
+                })
+                .collect(Collectors.toList());
+        System.out.println("Todos---------->\n"+todos+"\n---------------\n");
+        todoRepository.saveAll(todos);
     }
 
     @Transactional
