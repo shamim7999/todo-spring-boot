@@ -1,6 +1,6 @@
 package org.dsi.todospringboot.services;
 
-import org.dsi.todospringboot.helper.ExcelHelper;
+import org.dsi.todospringboot.helper.ExcelToDatabaseHelper;
 import org.dsi.todospringboot.helper.Shorter;
 import org.dsi.todospringboot.helper.TimestampConverter;
 import org.dsi.todospringboot.models.Todo;
@@ -37,7 +37,7 @@ public class TodoService {
 
     @Transactional
     public void save(MultipartFile file) throws Exception {
-        List<Todo> todos = ExcelHelper.excelSheetToListOfTodos(file.getInputStream()).stream()
+        List<Todo> todos = ExcelToDatabaseHelper.excelSheetToListOfTodos(file.getInputStream()).stream()
                 .peek(todo -> {
                     todo.setIsEnabled(true);
                     todo.setUpdatedTime(Timestamp.valueOf(LocalDateTime.now()));

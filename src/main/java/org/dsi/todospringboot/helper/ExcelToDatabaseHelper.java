@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ExcelHelper {
+public class ExcelToDatabaseHelper {
 
     public static String FILE_CONTENT_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     public static String integerToString(Integer x) {
