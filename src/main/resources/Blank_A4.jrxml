@@ -50,7 +50,7 @@
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="75" y="0" width="70" height="53" uuid="9883953a-6c98-40d2-a9ae-726b8006f0ef"/>
+				<reportElement x="75" y="0" width="100" height="53" uuid="9883953a-6c98-40d2-a9ae-726b8006f0ef"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="95" y="7" width="30" height="20" uuid="24ad1423-39c7-4c5d-a924-438415078100"/>

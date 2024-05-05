@@ -41,6 +41,12 @@
                 <a th:href="@{'/show-todos?status=Completed'}">
                     <button type="button" class="btn btn-danger">Completed</button>
                 </a>
+                <a th:href="@{'/todos/pdf'}" target="_blank">
+                    <button type="button" class="btn btn-warning">Download PDF</button>
+                </a>
+                <a th:href="@{'/todos/create-excel'}">
+                    <button type="button" class="btn btn-info">Download Excel</button>
+                </a>
             </div>
         </div>
     </div>
